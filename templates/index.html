@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedding Generator</title>
+</head>
+<body>
+    <h1>Select a File and Model</h1>
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <label for="model_choice">Choose a BERT model:</label>
+        <select name="model_choice" required>
+            {% for model_name in models %}
+                <option value="{{ model_name }}">{{ model_name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Upload and Generate Embeddings</button>
+    </form>
+</body>
+</html>

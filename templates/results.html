@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Embedding Results</title>
+</head>
+<body>
+    <h1>Embedding Results</h1>
+
+    <!-- Display the time taken, vector quality, and retrieval accuracy for each model -->
+    <h2>Model Evaluation</h2>
+    <ul>
+        {% for result in results %}
+            <li>
+                {{ result.model_name }}: 
+                <ul>
+                    <li>Time Taken: {{ result.time }} seconds</li>
+                    <li>Vector Quality: {{ result.vector_quality }}</li>
+                    <li>Retrieval Accuracy: {{ result.retrieval_accuracy }}</li>
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Display the time taken for the selected model -->
+    {% if selected_model_name %}
+        <h2>Selected Model Results</h2>
+        <p>Chosen Model: {{ selected_model_name }}</p>
+        {% for result in results %}
+            {% if result.model_name == selected_model_name %}
+                <ul>
+                    <li>Time Taken: {{ result.time }} seconds</li>
+                    <li>Vector Quality: {{ result.vector_quality }}</li>
+                    <li>Retrieval Accuracy: {{ result.retrieval_accuracy }}</li>
+                </ul>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    <!-- Display the recommended model based on minimum time -->
+    {% if recommended_model %}
+        <h2>Recommended Model</h2>
+        <p>Recommended Model: {{ recommended_model.model_name }}</p>
+        <p>Time Taken: {{ recommended_model.time }} seconds</p>
+        <p>Vector Quality: {{ recommended_model.vector_quality }}</p>
+        <p>Retrieval Accuracy: {{ recommended_model.retrieval_accuracy }}</p>
+    {% endif %}
+</body>
+</html>
